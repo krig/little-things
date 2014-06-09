@@ -1,33 +1,33 @@
 TICK = {
-  "normal" => Proc.new {|days, quality|
+  "normal" => lambda do |days, quality|
     days -= 1
-    next days, quality if quality == 0
-    next days, quality - 2 if days < 1
-    next days, quality - 1
-  },
-  "Aged Brie" => Proc.new {|days, quality|
+    return days, quality if quality == 0
+    return days, quality - 2 if days < 1
+    return days, quality - 1
+  end,
+  "Aged Brie" => lambda do |days, quality|
     days -= 1
-    next days, quality if quality >= 50
-    next days, quality - 2 if days < 1
-    next days, quality - 1
-  },
-  "Sulfuras, Hand of Ragnaros" => Proc.new {|days, quality|
-    next days, quality
-  },
-  "Backstage passes to a TAFKAL80ETC concert" => Proc.new {|days, quality|
+    return days, quality if quality >= 50
+    return days, quality - 2 if days < 1
+    return days, quality - 1
+  end,
+  "Sulfuras, Hand of Ragnaros" => lambda do |days, quality|
+    return days, quality
+  end,
+  "Backstage passes to a TAFKAL80ETC concert" => lambda do |days, quality|
     days -= 1
-    next days, quality if quality >= 50
-    next days, 0 if days < 0
-    next days, quality + 3 if days < 5
-    next days, quality + 2 if days < 10
-    next days, quality + 1
-  },
-  "Conjured Mana Cake" => Proc.new {|days, quality|
+    return days, quality if quality >= 50
+    return days, 0 if days < 0
+    return days, quality + 3 if days < 5
+    return days, quality + 2 if days < 10
+    return days, quality + 1
+  end,
+  "Conjured Mana Cake" => lambda do |days, quality|
     days -= 1
-    next days, quality if quality == 0
-    next days, quality - 4 if days <= 0
-    next days, quality - 2
-  },
+    return days, quality if quality == 0
+    return days, quality - 4 if days <= 0
+    return days, quality - 2
+  end,
 }
 
 class GildedRose

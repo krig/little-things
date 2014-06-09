@@ -36,5 +36,8 @@ footnote, I'd say that Python is a much cleaner language in this
 regard, and my version of the code would end up being a whole lot
 cleaner in Python.
 
+edit: Updated to use lambdas and return instead, plus added a Python
+implementation to show what I meant by the previous paragraph.
+
 [sm]: http://www.sandimetz.com/
 [yt]: http://youtu.be/8bZh5LMaSmE
