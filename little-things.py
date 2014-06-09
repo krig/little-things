@@ -2,28 +2,25 @@ class GildedRose(object):
     def __init__(self, name, quality, days_remaining):
         self.quality = quality
         self.days_remaining = days_remaining
-        for f in dir(self):
-            if f.startswith('tick_') and getattr(self, f).__doc__ == name:
-                self.tick = getattr(self, f)
+        from inspect import getmembers, ismethod
+        self.tick = ([fn for _, fn in getmembers(self, ismethod) if fn.__doc__ == name] +
+                     [lambda: None])[0]
 
-    def tick(self):
-        pass
-
-    def tick_normal(self):
+    def _normal(self):
         "normal"
         self.days_remaining -= 1
         if self.quality == 0: pass
         elif self.days_remaining < 1: self.quality -= 2
         else: self.quality -= 1
 
-    def tick_aged_brie(self):
+    def _brie(self):
         "Aged Brie"
         self.days_remaining -= 1
         if self.quality >= 50: pass
         elif self.days_remaining < 1: self.quality -= 2
         else: self.quality -= 1
 
-    def tick_backstage(self):
+    def _backstage(self):
         "Backstage passes to a TAFKAL80ETC concert"
         self.days_remaining -= 1
         if self.quality >= 50: pass
@@ -32,7 +29,7 @@ class GildedRose(object):
         elif self.days_remaining < 10: self.quality += 2
         else: self.quality += 1
 
-    def tick_conjured(self):
+    def _conjured(self):
         "Conjured Mana Cake"
         self.days_remaining -= 1
         if self.quality == 0: pass
