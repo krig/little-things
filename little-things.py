@@ -1,7 +1,6 @@
 class GildedRose(object):
     def __init__(self, name, quality, days_remaining):
-        self.quality = quality
-        self.days_remaining = days_remaining
+        self.quality, self.days_remaining = quality, days_remaining
         from inspect import getmembers, ismethod
         self.tick = ([fn for _, fn in getmembers(self, ismethod) if fn.__doc__ == name] +
                      [lambda: None])[0]
